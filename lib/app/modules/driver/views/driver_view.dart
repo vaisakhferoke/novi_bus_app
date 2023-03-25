@@ -5,14 +5,16 @@ import 'package:get/get.dart';
 import '../controllers/driver_controller.dart';
 
 class DriverView extends GetView<DriverController> {
+  const DriverView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('DriverView'),
+        title: const Text('DriverView'),
         centerTitle: true,
       ),
-      body: Center(
+      body: const Center(
         child: Text(
           'DriverView is working',
           style: TextStyle(fontSize: 20),

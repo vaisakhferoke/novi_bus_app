@@ -1,5 +1,3 @@
-import 'dart:developer';
-import 'package:get/get.dart';
 import 'package:novi_bus_app/api/provider.dart';
 
 class ApiProvider extends ApiConnect {

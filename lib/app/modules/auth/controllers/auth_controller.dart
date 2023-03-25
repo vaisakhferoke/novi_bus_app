@@ -1,20 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
-  //TODO: Implement AuthController
+  final keyForm = GlobalKey<FormState>();
+  TextEditingController usernameController =
+      TextEditingController(text: 'admin_user');
+  TextEditingController passwordController =
+      TextEditingController(text: '123admin789');
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {}
-  void increment() => count.value++;
+  final isLoading = false.obs;
 }

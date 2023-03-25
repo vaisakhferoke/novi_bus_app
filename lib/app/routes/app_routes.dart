@@ -9,6 +9,7 @@ abstract class Routes {
   static const SPLASH = _Paths.SPLASH;
   static const AUTH = _Paths.AUTH;
   static const DRIVER = _Paths.DRIVER;
+  static const DRIVER_ADD = _Paths.DRIVER_ADD;
   static const BUSDETAILS = _Paths.BUSDETAILS;
 }
 
@@ -18,5 +19,6 @@ abstract class _Paths {
   static const SPLASH = '/splash';
   static const AUTH = '/auth';
   static const DRIVER = '/driver';
+  static const DRIVER_ADD = '/driver-add';
   static const BUSDETAILS = '/busdetails';
 }

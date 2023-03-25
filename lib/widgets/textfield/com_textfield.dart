@@ -24,6 +24,7 @@ class CustomTextFormField extends StatelessWidget {
         decoration: InputDecoration(
             hintText: hintText,
             filled: true,
+            isDense: true,
             fillColor: AppUiSettings.colorGray.withOpacity(0.1),
             enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide.none,

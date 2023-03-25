@@ -46,22 +46,33 @@ class DriverView extends GetView<DriverController> {
                     ? const Center(
                         child: CircularProgressIndicator(),
                       )
-                    : ListView.separated(
-                        separatorBuilder: (context, index) => const SizedBox(
-                              height: 10,
-                            ),
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount: controller.driverList.length,
-                        itemBuilder: (_, index) {
-                          return InkWell(
-                              onTap: () {},
-                              child: DriverListTile(
-                                liceNo: controller.driverList[index].licenseNo,
-                                name: controller.driverList[index].name,
-                              ));
-                        })),
+                    : controller.driverList.isEmpty
+                        ? const Center(
+                            child: Text("No Data"),
+                          )
+                        : ListView.separated(
+                            separatorBuilder: (context, index) =>
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            itemCount: controller.driverList.length,
+                            itemBuilder: (_, index) {
+                              return InkWell(
+                                  onTap: () {},
+                                  child: DriverListTile(
+                                    liceNo:
+                                        controller.driverList[index].licenseNo,
+                                    name: controller.driverList[index].name,
+                                    act: () {
+                                      controller.deleteDriver(controller
+                                          .driverList[index].id
+                                          .toString());
+                                    },
+                                  ));
+                            })),
               ),
             )
           ],

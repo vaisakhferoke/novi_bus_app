@@ -45,4 +45,18 @@ class DriverController extends GetxController {
     }
     isLoading(false);
   }
+
+  void deleteDriver(String id) async {
+    isLoading(true);
+    final response = await _provider.deleteDriver(id);
+
+    if (response != null) {
+      if (response.status) {
+        isLoading(false);
+        allDrivers();
+      } else {
+        isLoading(false);
+      }
+    }
+  }
 }

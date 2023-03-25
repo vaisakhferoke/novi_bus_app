@@ -41,4 +41,16 @@ class ApiProvider extends ApiConnect {
     }
     return null;
   }
+
+  Future<ApiModel?> deleteDriver(String id) async {
+    var body = {
+      "driver_id": id,
+    };
+    // log(body.toString());
+    final response = await deleteApi('DriverApi/${Session.urlId}/', body);
+    if (response != null) {
+      return ApiModel.fromJson(response);
+    }
+    return null;
+  }
 }

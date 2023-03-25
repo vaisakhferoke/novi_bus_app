@@ -15,7 +15,7 @@ class ApiModel {
   });
 
   bool status;
-  String message;
+  String? message;
 
   factory ApiModel.fromJson(Map<String, dynamic> json) => ApiModel(
         status: json["status"],

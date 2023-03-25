@@ -5,10 +5,12 @@ import 'package:novi_bus_app/utils/settings.dart';
 
 class DriverListTile extends StatelessWidget {
   final String name, liceNo;
+  final VoidCallback act;
   const DriverListTile({
     Key? key,
     required this.name,
     required this.liceNo,
+    required this.act,
   }) : super(key: key);
 
   @override
@@ -70,19 +72,24 @@ class DriverListTile extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(right: 10),
-            child: Container(
-              height: 30,
-              width: 70,
-              decoration: BoxDecoration(
-                color: AppUiSettings().primaryColor,
-                borderRadius: BorderRadius.circular(5),
-              ),
-              child: const Center(
-                child: Text(
-                  'Delete',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 10,
+            child: InkWell(
+              onTap: () {
+                act();
+              },
+              child: Container(
+                height: 30,
+                width: 70,
+                decoration: BoxDecoration(
+                  color: AppUiSettings().primaryColor,
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: const Center(
+                  child: Text(
+                    'Delete',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                    ),
                   ),
                 ),
               ),

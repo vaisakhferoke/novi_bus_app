@@ -1,41 +1,44 @@
+import 'dart:developer';
+
+import 'package:get/get_connect/http/src/multipart/form_data.dart';
 import 'package:novi_bus_app/api/provider.dart';
+import 'package:novi_bus_app/config/session.dart';
+import 'package:novi_bus_app/model/api_model.dart';
+import 'package:novi_bus_app/model/driver_list_model.dart';
+import 'package:novi_bus_app/model/login_response.dart';
 
 class ApiProvider extends ApiConnect {
-  // Future<AuthModel?> loginApi(
-  //   String mobile,
-  // ) async {
-  //   var body = FormData({
-  //     "mobile": mobile,
-  //   });
+  Future<LoginResponse?> loginApi(String username, String password) async {
+    var body = FormData({"username": username, "password": password});
 
-  //   log(body.toString());
-  //   final response = await postApi('login.aspx', body);
-  //   if (response != null) {
-  //     return AuthModel.fromJson(response.body);
-  //   }
-  //   return null;
-  // }
+    log(body.toString());
+    final response = await postApi('LoginApi', body);
+    if (response != null) {
+      return LoginResponse.fromJson(response.body);
+    }
+    return null;
+  }
 
-  // Future<CoverModel?> allCovers(String filter) async {
-  //   var body = FormData({"userid": Session.userId, "filter": filter});
+  Future<DriverListModel?> allDrivers() async {
+    final response = await getApiWithHeader(
+      'DriverApi/${Session.urlId}/',
+    );
+    if (response != null) {
+      return DriverListModel.fromJson(response.body);
+    }
+    return null;
+  }
 
-  //   log(body.toString());
-  //   final response = await postApi('all_covers.aspx', body);
-  //   if (response != null) {
-  //     return CoverModel.fromJson(response.body);
-  //   }
-  //   return null;
-  // }
+  Future<ApiModel?> addDrivers(String name, String liseNo) async {
+    var body =
+        FormData({"name": name, "mobile": '9744449448', 'license_no': liseNo});
 
-  // Future<CoverModel?> distributedCovers() async {
-  //   var body = FormData({"userid": Session.userId, "filter": 'date'});
-
-  //   log(body.toString());
-  //   final response = await postApi('distributed_covers.aspx', body);
-  //   if (response != null) {
-  //     return CoverModel.fromJson(response.body);
-  //   }
-  //   return null;
-  // }
-
+    log(body.toString());
+    final response =
+        await postApiWithHeader('DriverApi/${Session.urlId}/', body);
+    if (response != null) {
+      return ApiModel.fromJson(response.body);
+    }
+    return null;
+  }
 }

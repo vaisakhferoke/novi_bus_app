@@ -28,35 +28,40 @@ class DriverView extends GetView<DriverController> {
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              '21 Buses Found',
-              style: TextStyle(
-                fontSize: 13,
-                color: Color.fromRGBO(107, 107, 107, 1),
-              ),
-            ),
+            Obx(() => Text(
+                  '${controller.driverList.length} Drivers Found',
+                  style: const TextStyle(
+                    fontSize: 13,
+                    color: Color.fromRGBO(107, 107, 107, 1),
+                  ),
+                )),
             const SizedBox(
               height: 20,
             ),
             Flexible(
               child: SizedBox(
-                child: ListView.separated(
-                    separatorBuilder: (context, index) => const SizedBox(
-                          height: 10,
-                        ),
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    itemCount: 5,
-                    itemBuilder: (_, index) {
-                      return InkWell(
-                          onTap: () {},
-                          child: const DriverListTile(
-                            liceNo: '123500',
-                            name: "Vaisakh p",
-                          ));
-                    }),
+                child: Obx(() => controller.isLoading.value
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : ListView.separated(
+                        separatorBuilder: (context, index) => const SizedBox(
+                              height: 10,
+                            ),
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: controller.driverList.length,
+                        itemBuilder: (_, index) {
+                          return InkWell(
+                              onTap: () {},
+                              child: DriverListTile(
+                                liceNo: controller.driverList[index].licenseNo,
+                                name: controller.driverList[index].name,
+                              ));
+                        })),
               ),
             )
           ],

@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:get/get.dart';
+import 'package:novi_bus_app/app/modules/busdetails/views/busdetails_seat3_view.dart';
 import 'package:novi_bus_app/app/modules/driver/views/driver_add_edit_view.dart';
 
 import '../modules/auth/bindings/auth_binding.dart';
@@ -50,6 +51,11 @@ class AppPages {
     GetPage(
       name: _Paths.BUSDETAILS,
       page: () => const BusdetailsView(),
+      binding: BusdetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.BUSDETAILS_SEAT3,
+      page: () => const BusdetailsSeat3View(),
       binding: BusdetailsBinding(),
     ),
   ];

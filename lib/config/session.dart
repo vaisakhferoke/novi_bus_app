@@ -1,6 +1,6 @@
 class Session {
   static String userId = '';
   static String name = '';
-  static String sessuinId = '';
-  static String mobile = '';
+  static String accessId = '';
+  static String urlId = '';
 }

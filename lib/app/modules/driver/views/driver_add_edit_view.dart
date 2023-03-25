@@ -16,49 +16,58 @@ class DriverAddView extends GetView<DriverController> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            CustomTextFormField(
-              hintText: 'Enter Name',
-              controller: controller.nameController,
-              onChanged: (value) {
-                controller.keyForm.currentState!.validate();
-              },
-              validator: (value) {
-                if (!controller.isLoading.value) {
+        child: Form(
+          key: controller.keyForm,
+          child: Column(
+            children: [
+              CustomTextFormField(
+                hintText: 'Enter Name',
+                controller: controller.nameController,
+                onChanged: (value) {
+                  controller.keyForm.currentState!.validate();
+                },
+                validator: (value) {
+                  if (!controller.isLoading.value) {
+                    return null;
+                  }
+                  if (value?.trim().isEmpty ?? true) {
+                    return "Name is required.";
+                  }
                   return null;
-                }
-                if (value?.trim().isEmpty ?? true) {
-                  return "Name is required.";
-                }
-                return null;
-              },
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            CustomTextFormField(
-              hintText: 'Enter License Numeber',
-              controller: controller.nameController,
-              onChanged: (value) {
-                controller.keyForm.currentState!.validate();
-              },
-              validator: (value) {
-                if (!controller.isLoading.value) {
+                },
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              CustomTextFormField(
+                hintText: 'Enter License Numeber',
+                controller: controller.liceNoController,
+                onChanged: (value) {
+                  controller.keyForm.currentState!.validate();
+                },
+                validator: (value) {
+                  if (!controller.isLoading.value) {
+                    return null;
+                  }
+                  if (value?.trim().isEmpty ?? true) {
+                    return "License Number is required.";
+                  }
                   return null;
-                }
-                if (value?.trim().isEmpty ?? true) {
-                  return "License Number is required.";
-                }
-                return null;
-              },
-            ),
-          ],
+                },
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(20),
-        child: CommonButton(lable: "Save", fun: () {}),
+        child: CommonButton(
+            lable: "Save",
+            fun: () {
+              if (controller.keyForm.currentState!.validate()) {
+                controller.add();
+              }
+            }),
       ),
     );
   }

@@ -8,7 +8,7 @@ import 'app/routes/app_pages.dart';
 void main() {
   runApp(
     GetMaterialApp(
-      title: "BUSAPP",
+      title: "Moovbe",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,

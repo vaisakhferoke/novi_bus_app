@@ -11,6 +11,7 @@ abstract class Routes {
   static const DRIVER = _Paths.DRIVER;
   static const DRIVER_ADD = _Paths.DRIVER_ADD;
   static const BUSDETAILS = _Paths.BUSDETAILS;
+  static const BUSDETAILS_SEAT3 = _Paths.BUSDETAILS_SEAT3;
 }
 
 abstract class _Paths {
@@ -21,4 +22,5 @@ abstract class _Paths {
   static const DRIVER = '/driver';
   static const DRIVER_ADD = '/driver-add';
   static const BUSDETAILS = '/busdetails';
+  static const BUSDETAILS_SEAT3 = '/busdetails-seat-3';
 }

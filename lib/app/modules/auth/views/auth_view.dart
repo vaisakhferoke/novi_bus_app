@@ -74,11 +74,14 @@ class AuthView extends GetView<AuthController> {
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  child: CommonButton(
+                  child: Obx(() => CommonButton(
                       lable: "Login",
+                      isLoading: controller.isLoading.value,
                       fun: () {
-                        Get.toNamed(Routes.HOME);
-                      }),
+                        if (controller.keyForm.currentState!.validate()) {
+                          controller.login();
+                        }
+                      })),
                 ),
               ),
             ],

@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:get/get.dart';
 import 'package:novi_bus_app/app/modules/busdetails/views/widget/bus_det_head_card.dart';
-
 import 'package:novi_bus_app/utils/icons.dart';
 import 'package:novi_bus_app/utils/settings.dart';
-
 import '../controllers/busdetails_controller.dart';
 
-class BusdetailsView extends GetView<BusdetailsController> {
-  const BusdetailsView({super.key});
+class BusdetailsSeat3View extends GetView<BusdetailsController> {
+  const BusdetailsSeat3View({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -63,16 +60,16 @@ class BusdetailsView extends GetView<BusdetailsController> {
                               children: <Widget>[
                                 for (int x = 1; x < 6; x++)
                                   Expanded(
-                                    child: (x == 3)
+                                    child: (x == 2)
                                         ? Container()
                                         : Container(
                                             height: 60,
                                             margin: const EdgeInsets.all(5),
-                                            child: controller.chair2List[i]
+                                            child: controller.chair3List[i]
                                                         [x - 1] ==
                                                     1
                                                 ? availableChair(i, x - 1)
-                                                : controller.chair2List[i]
+                                                : controller.chair3List[i]
                                                             [x - 1] ==
                                                         2
                                                     ? chair(i, x - 1)
@@ -97,7 +94,7 @@ class BusdetailsView extends GetView<BusdetailsController> {
   Widget chair(int a, int b) {
     return InkWell(
       onTap: () {
-        controller.chair2List[a][b] = 1;
+        controller.chair3List[a][b] = 1;
         controller.update();
       },
       child: Center(
@@ -112,7 +109,7 @@ class BusdetailsView extends GetView<BusdetailsController> {
   Widget availableChair(int a, int b) {
     return InkWell(
       onTap: () {
-        controller.chair2List[a][b] = 2;
+        controller.chair3List[a][b] = 2;
         controller.update();
       },
       child: Center(

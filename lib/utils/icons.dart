@@ -1,5 +1,6 @@
 class MoovbeIcons {
   String logo = 'assets/icons/logo.svg';
+  String seat = 'assets/icons/Seat.svg';
 }
 
 class MoovbeImages {

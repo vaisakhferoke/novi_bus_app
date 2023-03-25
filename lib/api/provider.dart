@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:novi_bus_app/api/base_url.dart';
 import 'package:novi_bus_app/api/error_handler.dart';
+import 'package:novi_bus_app/config/session.dart';
 
 class ApiConnect extends GetConnect {
   @override
@@ -44,9 +45,47 @@ class ApiConnect extends GetConnect {
     }
   }
 
-  Future<dynamic> deleteApi(String url, {Map<String, dynamic>? qurey}) async {
-    final response = await delete(
+  Future<dynamic> getApiWithHeader(String url,
+      {Map<String, dynamic>? qurey}) async {
+    var headers = {'Authorization': "Bearer ${Session.accessId}"};
+    log('----Token -----');
+
+    final response = await get(
       "${BaseUrl().baseUrl}$url",
+      headers: headers,
+      query: qurey,
+    );
+    if (response.status.hasError) {
+      log('----Status Code -----');
+      log(response.statusCode.toString());
+
+      ErrorHandleError.errorHandleError(response);
+    } else {
+      return response;
+    }
+  }
+
+  Future<dynamic> postApiWithHeader(String url, dynamic body) async {
+    var headers = {'Authorization': "Bearer ${Session.accessId}"};
+    final response = await post(
+      "${BaseUrl().baseUrl}$url",
+      headers: headers,
+      body,
+    );
+    if (response.status.hasError) {
+      log('----Status Code -----');
+      log(response.statusCode.toString());
+      log(response.body.toString());
+      ErrorHandleError.errorHandleError(response);
+    } else {
+      return response;
+    }
+  }
+
+  Future<dynamic> deleteApi(String url, {Map<String, dynamic>? qurey}) async {
+    var headers = {'Authorization': "Bearer ${Session.accessId}"};
+    final response = await delete(
+      "${BaseUrl().baseUrl}$url", headers: headers,
       query: qurey,
       // body,
     );

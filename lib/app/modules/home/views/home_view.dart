@@ -79,10 +79,11 @@ class HomeView extends GetView<HomeController> {
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
-                    itemCount: 5,
+                    itemCount: controller.buslist.length,
                     itemBuilder: (_, index) {
-                      return InkWell(
-                          onTap: () {}, child: const HomeScreenBusListTile());
+                      return HomeScreenBusListTile(
+                        seatType: controller.buslist[index],
+                      );
                     }),
               ),
             )
